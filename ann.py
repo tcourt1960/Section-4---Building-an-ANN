@@ -48,6 +48,21 @@ from keras.models import Sequential
 from keras.layers import Dense
 # Fitting classifier to the Training set
 # Create your classifier here
+classifier = Sequential()
+classifier.add(Dense(output_dim=6, init = 'uniform', activation = 'relu', input_dim=11 ))
+
+#adding the second hidden layer
+classifier.add(Dense(output_dim=6, init = 'uniform', activation = 'relu'))
+
+#adding the output layer
+classifier.add(Dense(output_dim=1, init = 'uniform', activation = 'sigmoid'))
+
+
+#Compiling the ANN
+classifier.compile(optimizer = 'adam', loss='binary_crossentropy', metrics= ['accuracy'])
+classifier.fit(X_train, y_train, batch_size=10, nb_epoch=100)
+
+
 
 # Predicting the Test set results
 y_pred = classifier.predict(X_test)
