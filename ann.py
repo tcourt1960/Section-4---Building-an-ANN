@@ -49,6 +49,8 @@ from keras.layers import Dense
 # Fitting classifier to the Training set
 # Create your classifier here
 classifier = Sequential()
+
+#Adding the input layer and first hidden layer
 classifier.add(Dense(output_dim=6, init = 'uniform', activation = 'relu', input_dim=11 ))
 
 #adding the second hidden layer
@@ -60,15 +62,22 @@ classifier.add(Dense(output_dim=1, init = 'uniform', activation = 'sigmoid'))
 
 #Compiling the ANN
 classifier.compile(optimizer = 'adam', loss='binary_crossentropy', metrics= ['accuracy'])
-classifier.fit(X_train, y_train, batch_size=10, nb_epoch=100)
 
-
+# Training the ANN to the Training Set
+classifier.fit(X_train, y_train, batch_size=100, nb_epoch=100)
 
 # Predicting the Test set results
 y_pred = classifier.predict(X_test)
-
 y_pred=(y_pred>0.5)
 
 # Making the Confusion Matrix
 from sklearn.metrics import confusion_matrix
 cm = confusion_matrix(y_test, y_pred)
+
+
+
+
+
+
+
+
